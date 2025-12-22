@@ -62,7 +62,7 @@ Notes:
 
 ---
 
-## Git Workflow (Professional)
+## Git Workflow 
 
 1. Always pull latest main before starting:
 
