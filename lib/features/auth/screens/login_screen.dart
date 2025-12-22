@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../main/screens/main_wrapper.dart';
 import '../widgets/auth_widgets.dart';
 import '../../../core/theme/app_colors.dart';
+import 'register_screen.dart'; // Ensure this import matches your file path
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -19,23 +20,32 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20),
               const AuthHeader(),
               const SizedBox(height: 40),
+              
+              // Email Field
               const CustomTextField(
                 label: 'Email Address',
                 hintText: 'aymen@example.com',
                 icon: Icons.email_outlined,
               ),
               const SizedBox(height: 20),
+              
+              // Password Field
               const CustomTextField(
                 label: 'Password',
                 hintText: '••••••••',
                 icon: Icons.lock_outline,
                 isPassword: true,
               ),
+              
               const SizedBox(height: 12),
+              
+              // Forgot Password
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODO: Implement Forgot Password logic
+                  },
                   child: const Text(
                     'Forgot Password?',
                     style: TextStyle(
@@ -45,10 +55,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              
               const SizedBox(height: 20),
+              
+              // Login Button
               SignInButton(
                 onPressed: () {
-                  // Navigate to MainWrapper (Home)
+                  // Temporarily navigate to MainWrapper
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => const MainWrapper(),
@@ -56,37 +69,10 @@ class LoginScreen extends StatelessWidget {
                   );
                 },
               ),
-              const SizedBox(height: 30),
-              const Row(
-                children: [
-                  Expanded(child: Divider(color: Colors.black12)),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'Or continue with',
-                      style: TextStyle(color: AppColors.secondaryText),
-                    ),
-                  ),
-                  Expanded(child: Divider(color: Colors.black12)),
-                ],
-              ),
-              const SizedBox(height: 30),
-              const Row(
-                children: [
-                  SocialButton(
-                    label: 'Google',
-                    icon: Icons.g_mobiledata,
-                    iconColor: Colors.blue,
-                  ), // Replaced with text/icon for now
-                  SizedBox(width: 16),
-                  SocialButton(
-                    label: 'Apple',
-                    icon: Icons.apple,
-                    iconColor: Colors.black,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
+              
+              const SizedBox(height: 60), // Increased spacing since social buttons are gone
+              
+              // Sign Up Navigation
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -95,7 +81,15 @@ class LoginScreen extends StatelessWidget {
                     style: TextStyle(color: AppColors.secondaryText),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      // Navigate to Register Screen
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterScreen(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'Sign Up',
                       style: TextStyle(

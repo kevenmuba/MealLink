@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 
 class AuthHeader extends StatelessWidget {
-  const AuthHeader({super.key});
+  final String title;
+  final String subtitle;
+
+  const AuthHeader({
+    super.key,
+    this.title = 'Welcome Back',
+    this.subtitle = 'Sign in to manage your daily meals',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +34,23 @@ class AuthHeader extends StatelessWidget {
               Icons.restaurant_menu,
               color: Colors.orange,
               size: 40,
-            ), // Placeholder for spoon/fork logo
+            ),
           ),
         ),
         const SizedBox(height: 24),
-        const Text(
-          'Welcome Back',
-          style: TextStyle(
+        Text(
+          title, // Use the dynamic variable here
+          style: const TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
             color: AppColors.primaryText,
           ),
         ),
         const SizedBox(height: 8),
-        const Text(
-          'Sign in to manage your daily meals',
-          style: TextStyle(color: AppColors.secondaryText, fontSize: 14),
+        Text(
+          subtitle, // Use the dynamic variable here
+          textAlign: TextAlign.center,
+          style: const TextStyle(color: AppColors.secondaryText, fontSize: 14),
         ),
       ],
     );
@@ -54,6 +62,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final bool isPassword;
+  final TextEditingController? controller;
 
   const CustomTextField({
     super.key,
@@ -61,6 +70,7 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     required this.icon,
     this.isPassword = false,
+    this.controller,
   });
 
   @override
@@ -68,12 +78,15 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: AppColors.secondaryText,
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
+        Padding(
+          padding: const EdgeInsets.only(left: 4.0),
+          child: Text(
+            label,
+            style: const TextStyle(
+              color: AppColors.secondaryText,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
         const SizedBox(height: 8),
@@ -90,6 +103,7 @@ class CustomTextField extends StatelessWidget {
             ],
           ),
           child: TextField(
+            controller: controller,
             obscureText: isPassword,
             decoration: InputDecoration(
               hintText: hintText,
@@ -113,8 +127,13 @@ class CustomTextField extends StatelessWidget {
 
 class SignInButton extends StatelessWidget {
   final VoidCallback onPressed;
+  final String text;
 
-  const SignInButton({super.key, required this.onPressed});
+  const SignInButton({
+    super.key,
+    required this.onPressed,
+    this.text = 'Sign In',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -131,15 +150,15 @@ class SignInButton extends StatelessWidget {
           elevation: 0,
         ),
         onPressed: onPressed,
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Sign In',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              text,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            SizedBox(width: 8),
-            Icon(Icons.arrow_forward, size: 18),
+            const SizedBox(width: 8),
+            const Icon(Icons.arrow_forward, size: 18),
           ],
         ),
       ),
@@ -149,7 +168,7 @@ class SignInButton extends StatelessWidget {
 
 class SocialButton extends StatelessWidget {
   final String label;
-  final IconData icon; // Placeholder for SVG/Image assets
+  final IconData icon;
   final Color? iconColor;
 
   const SocialButton({
