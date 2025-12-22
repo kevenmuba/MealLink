@@ -5,7 +5,7 @@ import '../widgets/auth_widgets.dart';
 import '../../../core/theme/app_colors.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -48,6 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         'name': _nameController.text.trim(),
         'phone': _phoneController.text.trim(),
         'email': _emailController.text.trim(),
+        'password': _passwordController.text.trim(),
         'role': 'customer',             // Changed from 'user' to 'customer'
         'status': 'pending',            // 🔴 The gatekeeper status
         'totalPaid': 0.0,               // Initial financial state
