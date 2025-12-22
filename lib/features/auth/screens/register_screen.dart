@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../widgets/auth_widgets.dart';
 import '../../../core/theme/app_colors.dart';
 
@@ -16,11 +18,77 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  // Loading state to disable button and show progress
+  bool _isLoading = false;
+
+  Future<void> _handleRegister() async {
+    if (_emailController.text.isEmpty || _passwordController.text.isEmpty || _nameController.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Please fill in all required fields")),
+      );
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    try {
+      // 1. Create User in Firebase Authentication
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+
+      // 2. Store user profile in Firestore with Step 1 requirements
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user!.uid)
+          .set({
+        'uid': userCredential.user!.uid,
+        'name': _nameController.text.trim(),
+        'phone': _phoneController.text.trim(),
+        'email': _emailController.text.trim(),
+        'role': 'customer',             // Changed from 'user' to 'customer'
+        'status': 'pending',            // 🔴 The gatekeeper status
+        'totalPaid': 0.0,               // Initial financial state
+        'balance': 0.0,                 // Initial financial state
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+
+      // 3. Success Feedback
+      if (mounted) {
+        // Log out immediately so they don't stay logged in after registration
+        await FirebaseAuth.instance.signOut(); 
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Registration successful. Please wait for admin approval."),
+            backgroundColor: Colors.orange, // Orange suggests "waiting/pending"
+            duration: Duration(seconds: 5),
+          ),
+        );
+        
+        // Redirect to Login Screen
+        Navigator.pop(context); 
+      }
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = e.message ?? "An error occurred";
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Error: ${e.toString()}"), backgroundColor: Colors.red),
+      );
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      // Back button to return to Login
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -35,29 +103,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const AuthHeader(), // Your existing Logo/Header
-              const SizedBox(height: 30),
+              // Dynamic Header from your auth_widgets.dart
+              const AuthHeader(
+                title: "Create Account",
+                subtitle: "Register as a new user to get started",
+              ),
               
-              const Text(
-                "Create Account",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primaryText,
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                "Register as a new user",
-                style: TextStyle(
-                  fontSize: 15,
-                  color: AppColors.secondaryText,
-                ),
-              ),
               const SizedBox(height: 35),
               
               // --- FORM FIELDS ---
-              
               CustomTextField(
                 label: 'Full Name',
                 hintText: 'Enter your name',
@@ -93,32 +147,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 40),
               
               // --- SIGN UP BUTTON ---
-              SizedBox(
-                width: double.infinity,
-                height: 56,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // UI Action: Print values to console for now
-                    print("Registering as: User");
-                    print("Name: ${_nameController.text}");
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple, // Matches your seed color
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: const Text(
-                    "Create Account",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+              _isLoading 
+              ? const CircularProgressIndicator(color: Colors.deepPurple)
+              : SignInButton(
+                  text: "Create Account",
+                  onPressed: _handleRegister,
                 ),
-              ),
               
               const SizedBox(height: 25),
               
