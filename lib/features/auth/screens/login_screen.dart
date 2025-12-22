@@ -57,8 +57,8 @@ class LoginScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 30),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   Expanded(child: Divider(color: Colors.black12)),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
@@ -71,8 +71,8 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 30),
-              Row(
-                children: const [
+              const Row(
+                children: [
                   SocialButton(
                     label: 'Google',
                     icon: Icons.g_mobiledata,

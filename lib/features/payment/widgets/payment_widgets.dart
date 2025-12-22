@@ -50,9 +50,9 @@ class PlanSummaryCard extends StatelessWidget {
         ), // Slightly darker peach than background, matching design
         borderRadius: BorderRadius.circular(24),
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Text(
             'Monthly Plan',
             style: TextStyle(color: AppColors.secondaryText, fontSize: 14),
@@ -133,7 +133,7 @@ class PlanDetailsCard extends StatelessWidget {
         ),
         Text(
           value,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Colors.black,
@@ -164,9 +164,9 @@ class PayWithChapaButton extends StatelessWidget {
               ),
             ),
             onPressed: () {},
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 Icon(Icons.credit_card, size: 20),
                 SizedBox(width: 8),
                 Text(
@@ -178,9 +178,9 @@ class PayWithChapaButton extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Icon(Icons.shield_outlined, size: 16, color: Colors.grey),
             SizedBox(width: 6),
             Text(

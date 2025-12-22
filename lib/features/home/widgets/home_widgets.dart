@@ -76,8 +76,8 @@ class TodayStatusSection extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.black12),
           ),
-          child: Row(
-            children: const [
+          child: const Row(
+            children: [
               Icon(Icons.check_circle_outline, size: 16, color: Colors.black87),
               SizedBox(width: 4),
               Text(
@@ -125,7 +125,7 @@ class TodayMealCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Stack(
+            child: const Stack(
               children: [
                 Positioned(
                   top: 10,
@@ -185,9 +185,9 @@ class IAteTodayButton extends StatelessWidget {
           elevation: 0,
         ),
         onPressed: () {},
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Icon(Icons.restaurant, size: 20),
             SizedBox(width: 10),
             Text(
@@ -364,10 +364,10 @@ class MonthlyPlanCard extends StatelessWidget {
             child: const Icon(Icons.payment, color: AppColors.cardOrange),
           ),
           const SizedBox(width: 16),
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   'Pay Monthly Plan',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),

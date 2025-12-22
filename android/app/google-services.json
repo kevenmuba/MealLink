@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "334615266736",
+    "project_id": "ai-podcast-trainer",
+    "storage_bucket": "ai-podcast-trainer.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334615266736:android:38174bb2c5e2d20a330275",
+        "android_client_info": {
+          "package_name": "com.example.meallink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjPtlz7t8_jMh9YjN1cBBkvVBr6SfBM8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

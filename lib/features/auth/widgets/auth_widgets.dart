@@ -131,9 +131,9 @@ class SignInButton extends StatelessWidget {
           elevation: 0,
         ),
         onPressed: onPressed,
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Text(
               'Sign In',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
