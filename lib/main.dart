@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'core/theme/app_colors.dart';
-import 'features/main/screens/main_wrapper.dart';
+import 'features/auth/screens/login_screen.dart';
 
 void main() {
   runApp(const MealLinkApp());
@@ -18,10 +18,9 @@ class MealLinkApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.background,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-        fontFamily:
-            'Inter', // Assuming Inter or system font, adding standard config
+        fontFamily: 'Inter',
       ),
-      home: const MainWrapper(),
+      home: const LoginScreen(),
     );
   }
 }
