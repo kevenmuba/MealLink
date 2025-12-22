@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../home/screens/home_screen.dart';
-import '../../payment/screens/payment_screen.dart';
+import 'admin_customers_screen.dart'; // Ensure this matches your file path
 import '../../alert/screens/alert_screen.dart';
 import '../../profile/screens/profile_screen.dart';
 import '../../../core/theme/app_colors.dart';
@@ -15,10 +15,10 @@ class AdminWrapper extends StatefulWidget {
 class _AdminWrapperState extends State<AdminWrapper> {
   int _currentIndex = 0;
 
-  // Using the exact same screens as MainWrapper
+  // Swapped PaymentScreen with AdminCustomersScreen
   final List<Widget> _screens = [
     const HomeScreen(),
-    const PaymentScreen(),
+    const AdminCustomersScreen(), 
     const AlertScreen(),
     const ProfileScreen(),
   ];
@@ -27,7 +27,9 @@ class _AdminWrapperState extends State<AdminWrapper> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
+      // Current selected screen
       body: _screens[_currentIndex],
+      
       bottomNavigationBar: Container(
         margin: const EdgeInsets.all(20),
         decoration: BoxDecoration(
@@ -47,6 +49,7 @@ class _AdminWrapperState extends State<AdminWrapper> {
             type: BottomNavigationBarType.fixed,
             elevation: 0,
             items: const [
+              // Home Item
               BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined),
                 activeIcon: CircleAvatar(
@@ -56,16 +59,37 @@ class _AdminWrapperState extends State<AdminWrapper> {
                 ),
                 label: 'Home',
               ),
+              
+              // Customers Item (Previously Payment)
               BottomNavigationBarItem(
-                icon: Icon(Icons.credit_card),
-                label: 'Payment',
+                icon: Icon(Icons.people_outline),
+                activeIcon: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 20,
+                  child: Icon(Icons.people, color: Colors.black),
+                ),
+                label: 'Customers',
               ),
+              
+              // Notifications Item
               BottomNavigationBarItem(
                 icon: Icon(Icons.notifications_none),
+                activeIcon: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 20,
+                  child: Icon(Icons.notifications, color: Colors.black),
+                ),
                 label: 'Alert',
               ),
+              
+              // Profile Item
               BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline),
+                activeIcon: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 20,
+                  child: Icon(Icons.person, color: Colors.black),
+                ),
                 label: 'Profile',
               ),
             ],
