@@ -40,14 +40,6 @@ class AlertScreen extends StatelessWidget {
             iconColor: Colors.orangeAccent,
             iconBgColor: Color(0xFFFFF8E1), // Light yellow
           ),
-          NotificationCard(
-            title: 'Meal Approved',
-            description: 'Your meal was approved.',
-            time: '2 days ago',
-            icon: Icons.check_circle_outline,
-            iconColor: Colors.green,
-            iconBgColor: AppColors.cardGreen,
-          ),
         ],
       ),
     );
