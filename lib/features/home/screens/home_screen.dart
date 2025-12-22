@@ -1,30 +1,28 @@
 import 'package:flutter/material.dart';
+import '../widgets/home_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('MealLink Home'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text(
-            '🚀 Be ready for task delegation.\n\n'
-            '⚠️ Please pull the latest changes from the repository.\n'
-            'When pushing your work, always create a new branch.\n'
-            'Never push directly to the main branch!',
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+    return SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        children: const [
+          HomeHeader(),
+          SizedBox(height: 20), // Spacing after header/search
+          TodayStatusSection(),
+          SizedBox(height: 12),
+          TodayMealCard(),
+          SizedBox(height: 20),
+          IAteTodayButton(),
+          SizedBox(height: 20),
+          StatsGrid(),
+          SizedBox(height: 20),
+          MonthlyPlanCard(),
+          SizedBox(height: 20), // Bottom padding
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'features/home/screens/home_screen.dart'; // <-- point to your HomeScreen
+import 'core/theme/app_colors.dart';
+import 'features/main/screens/main_wrapper.dart';
 
 void main() {
   runApp(const MealLinkApp());
@@ -14,9 +15,13 @@ class MealLinkApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'MealLink',
       theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.background,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+        fontFamily:
+            'Inter', // Assuming Inter or system font, adding standard config
       ),
-      home: const HomeScreen(),
+      home: const MainWrapper(),
     );
   }
 }
