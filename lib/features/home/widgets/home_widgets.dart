@@ -1,5 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../core/theme/app_colors.dart';
+
+const int kPricePerMeal = 100; // price per single food (Birr)
+
+String _formatCurrency(int value) {
+  final s = value.toString();
+  return s.replaceAllMapped(RegExp(r'\B(?=(\d{3})+(?!\d))'), (match) => ',');
+} 
+
+double _parseAmount(dynamic value) {
+  if (value == null) return 0;
+  if (value is num) return value.toDouble();
+  if (value is String) {
+    // remove currency symbols, commas and other non numeric characters
+    final cleaned = value.replaceAll(RegExp(r"[^0-9.\-]"), '');
+    return double.tryParse(cleaned) ?? 0;
+  }
+  if (value is Map) return _extractAmountFromMap(Map<String, dynamic>.from(value));
+  if (value is List) {
+    for (final v in value) {
+      final p = _parseAmount(v);
+      if (p > 0) return p;
+    }
+  }
+  return 0;
+}
+
+double _extractAmountFromMap(Map<String, dynamic> map) {
+  final lcKeys = map.keys.map((k) => k.toLowerCase()).toList();
+  // common amount keys
+  const candidates = ['amount', 'amt', 'price', 'total', 'balance', 'paid'];
+  for (final c in candidates) {
+    final idx = lcKeys.indexOf(c);
+    if (idx != -1) {
+      final key = map.keys.elementAt(idx);
+      return _parseAmount(map[key]);
+    }
+  }
+  // recursively search nested maps/lists for any numeric value
+  for (final value in map.values) {
+    final p = _parseAmount(value);
+    if (p > 0) return p;
+  }
+  return 0;
+} 
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -161,6 +208,23 @@ class TodayMealCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                '1 meal / day',
+                style: TextStyle(color: Colors.grey, fontSize: 12),
+              ),
+              Text(
+                '$kPricePerMeal Birr',
+                style: const TextStyle(
+                  color: AppColors.primaryText,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -201,8 +265,142 @@ class IAteTodayButton extends StatelessWidget {
   }
 }
 
-class StatsGrid extends StatelessWidget {
+class StatsGrid extends StatefulWidget {
   const StatsGrid({super.key});
+
+  @override
+  _StatsGridState createState() => _StatsGridState();
+}
+
+class _StatsGridState extends State<StatsGrid> {
+  int balance = 0;
+  int remainingDays = 0;
+  int daysEaten = 0;
+  int daysMissed = 0;
+  bool loading = true;
+
+  int paymentDocs = 0;
+  String fetchDebug = ''; 
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchBalance();
+  }
+
+  Future<void> _fetchBalance() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null || user.email == null) {
+        if (kDebugMode) {
+          print('[payments] no signed-in user');
+        }
+        setState(() {
+          loading = false;
+        });
+        return;
+      }
+
+      final email = user.email!;
+      final uid = user.uid;
+      final ref = FirebaseFirestore.instance.collection('payments');
+
+      List<DocumentSnapshot> found = [];
+
+      // 1) Try querying common email/uid fields
+      final checks = [
+        {'field': 'useremail', 'value': email},
+        {'field': 'userEmail', 'value': email},
+        {'field': 'email', 'value': email},
+        {'field': 'userId', 'value': uid},
+        {'field': 'uid', 'value': uid},
+      ];
+
+      for (final c in checks) {
+        try {
+          final q = await ref.where(c['field'] as String, isEqualTo: c['value']).get();
+          if (q.docs.isNotEmpty) {
+            found = q.docs;
+            if (kDebugMode) print('[payments] found ${q.docs.length} docs by ${c['field']}');
+            break;
+          }
+        } catch (e) {
+          // ignore errors (field may not exist or not indexed)
+          if (kDebugMode) print('[payments] query error for ${c['field']}: $e');
+        }
+      }
+
+      // 2) Try doc id equals uid or email
+      if (found.isEmpty) {
+        final dUid = await ref.doc(uid).get();
+        if (dUid.exists) {
+          found.add(dUid);
+          if (kDebugMode) print('[payments] found doc by uid');
+        }
+        final dEmail = await ref.doc(email).get();
+        if (dEmail.exists) {
+          found.add(dEmail);
+          if (kDebugMode) print('[payments] found doc by email');
+        }
+      }
+
+      // 3) Last resort: fetch a page of documents and filter locally (use with caution)
+      if (found.isEmpty) {
+        final all = await ref.limit(500).get();
+        for (final d in all.docs) {
+          final data = d.data();
+          if (data is Map<String, dynamic>) {
+            final lowerJoined = data.values
+                .map((v) => v?.toString().toLowerCase() ?? '')
+                .join(' ');
+            // try matching email or uid or uid token
+            if (lowerJoined.contains(email.toLowerCase()) || lowerJoined.contains(uid) || lowerJoined.contains(uid.split(' ').first)) {
+              found.add(d);
+            } else {
+              // also check userId field that may contain extra text
+              final rawUserId = (data['userId'] ?? data['userid'] ?? data['uid'] ?? data['user_id']);
+              if (rawUserId is String) {
+                final token = rawUserId.split(RegExp(r"\s+"))[0];
+                if (token.isNotEmpty && (token == uid || token == uid.split(' ').first)) {
+                  found.add(d);
+                }
+              }
+            }
+          }
+        }
+        if (kDebugMode) print('[payments] local filtered docs found: ${found.length}');
+      }
+
+      // parse amounts
+      double sum = 0;
+      for (final doc in found) {
+        final data = doc.data();
+        if (data is Map<String, dynamic>) {
+          final amt = _extractAmountFromMap(data);
+          sum += amt;
+          if (kDebugMode) print('[payments] parsed ${doc.id} -> $amt');
+        } else if (data != null) {
+          final parsed = _parseAmount(data);
+          sum += parsed;
+          if (kDebugMode) print('[payments] parsed ${doc.id} raw -> $parsed');
+        }
+      }
+
+      final int bal = sum.round();
+      setState(() {
+        balance = bal;
+        remainingDays = (balance / kPricePerMeal).floor();
+        paymentDocs = found.length;
+        fetchDebug = 'found ${found.length} doc(s)';
+        loading = false;
+      });
+    } catch (e, st) {
+      if (kDebugMode) print('[payments] fetch error: $e\n$st');
+      setState(() {
+        loading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +422,8 @@ class StatsGrid extends StatelessWidget {
               child: _buildInfoCard(
                 icon: Icons.account_balance_wallet_outlined,
                 title: 'Balance',
-                value: '2,100 Birr',
+                value: loading ? 'Loading...' : '${_formatCurrency(balance)} Birr',
+                subValue: loading ? null : (paymentDocs > 0 ? '$paymentDocs payment(s)' : 'No payments found'),
                 bgColor: AppColors.cardOrange,
                 iconBgColor: Colors.white,
               ),
@@ -234,11 +433,10 @@ class StatsGrid extends StatelessWidget {
               child: _buildInfoCard(
                 icon: Icons.calendar_today_outlined,
                 title: 'Remaining\nDays',
-                value: '23',
+                value: loading ? '-' : remainingDays.toString(),
                 subValue: 'meal days left',
                 bgColor: AppColors.cardWhite,
                 iconBgColor: Colors.white, // Actually outline in design?
-                // Design shows circle white bg for icon usually.
               ),
             ),
           ],
@@ -250,7 +448,7 @@ class StatsGrid extends StatelessWidget {
               child: _buildInfoCard(
                 icon: Icons.check_circle_outline,
                 title: 'Days Eaten',
-                value: '7',
+                value: loading ? '-' : daysEaten.toString(),
                 bgColor: AppColors.cardGreen,
                 iconBgColor: Colors.white.withOpacity(0.5), // Subtle
                 isGreenIcon: true,
@@ -261,7 +459,7 @@ class StatsGrid extends StatelessWidget {
               child: _buildInfoCard(
                 icon: Icons.cancel_outlined,
                 title: 'Days Missed',
-                value: '0',
+                value: loading ? '-' : daysMissed.toString(),
                 bgColor: AppColors.cardWhite,
                 iconBgColor: Colors.grey[200]!,
               ),
@@ -340,7 +538,7 @@ class StatsGrid extends StatelessWidget {
       ),
     );
   }
-}
+} 
 
 class MonthlyPlanCard extends StatelessWidget {
   const MonthlyPlanCard({super.key});
@@ -364,17 +562,17 @@ class MonthlyPlanCard extends StatelessWidget {
             child: const Icon(Icons.payment, color: AppColors.cardOrange),
           ),
           const SizedBox(width: 16),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Pay Monthly Plan',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 Text(
-                  '3,000 Birr / month',
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                  '${kPricePerMeal * 30} Birr / month',
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
                 ),
               ],
             ),
