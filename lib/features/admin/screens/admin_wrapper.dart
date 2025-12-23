@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../home/screens/home_screen.dart';
+import 'admin_home_screen.dart';
 import 'admin_customers_screen.dart'; // Ensure this matches your file path
 import '../../alert/screens/alert_screen.dart';
 import '../../profile/screens/profile_screen.dart';
@@ -17,7 +17,7 @@ class _AdminWrapperState extends State<AdminWrapper> {
 
   // Swapped PaymentScreen with AdminCustomersScreen
   final List<Widget> _screens = [
-    const HomeScreen(),
+   const AdminHomeScreen(),
     const AdminCustomersScreen(), 
     const AlertScreen(),
     const ProfileScreen(),
