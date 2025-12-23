@@ -49,11 +49,11 @@ class UserInfoCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Aymen Mohammed',
                   style: TextStyle(
                     fontSize: 16,
@@ -61,9 +61,9 @@ class UserInfoCard extends StatelessWidget {
                     color: AppColors.primaryText,
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 Row(
-                  children: const [
+                  children: [
                     Icon(Icons.email_outlined, size: 14, color: Colors.grey),
                     SizedBox(width: 4),
                     Text(
@@ -72,9 +72,9 @@ class UserInfoCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 2),
+                SizedBox(height: 2),
                 Row(
-                  children: const [
+                  children: [
                     Icon(Icons.business, size: 14, color: Colors.grey),
                     SizedBox(width: 4),
                     Text(
@@ -162,9 +162,9 @@ class SignOutButton extends StatelessWidget {
           elevation: 0,
         ),
         onPressed: () {},
-        child: Row(
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             Icon(
               Icons.logout,
               size: 20,
@@ -187,9 +187,9 @@ class VersionFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Column(
-        children: const [
+        children: [
           Text(
             'MealLink v1.0.0',
             style: TextStyle(color: Colors.grey, fontSize: 12),

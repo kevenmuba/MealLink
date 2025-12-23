@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "906296751214",
+    "project_id": "meallink-621b0",
+    "storage_bucket": "meallink-621b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906296751214:android:704d2ab6869236b502e27f",
+        "android_client_info": {
+          "package_name": "com.example.meallink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY4rCXMfLCWqSe31vxz_0gdS899I2y2gg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,309 @@
+Starting a Gradle Daemon (subsequent builds will be faster)
+> Task :gradle:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :gradle:compileKotlin UP-TO-DATE
+> Task :gradle:compileJava NO-SOURCE
+> Task :gradle:compileGroovy NO-SOURCE
+> Task :gradle:pluginDescriptors UP-TO-DATE
+> Task :gradle:processResources UP-TO-DATE
+> Task :gradle:classes UP-TO-DATE
+> Task :gradle:jar UP-TO-DATE
+
+> Configure project :app
+Warning: Flutter support for your project's Kotlin version (1.9.24) will soon be dropped. Please upgrade your Kotlin version to a version of at least 2.1.0 soon.
+Alternatively, use the flag "--android-skip-build-dependency-validation" to bypass this check.
+
+Potential fix: Your project's KGP version is typically defined in the plugins block of the `settings.gradle` file (C:\Users\hp\Desktop\meal_link\MealLink\android/settings.gradle), by a plugin with the id of org.jetbrains.kotlin.android. 
+If you don't see a plugins block, your project was likely created with an older template version, in which case it is most likely defined in the top-level build.gradle file (C:\Users\hp\Desktop\meal_link\MealLink\android/build.gradle) by the ext.kotlin_version property.
+
+
+> Task :app:DebugMinSdkCheck
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors
+> Task :app:compileFlutterBuildDebug
+> Task :app:packJniLibsflutterBuildDebug
+> Task :cloud_firestore:preBuild UP-TO-DATE
+> Task :cloud_firestore:preDebugBuild UP-TO-DATE
+> Task :firebase_analytics:preBuild UP-TO-DATE
+> Task :firebase_analytics:preDebugBuild UP-TO-DATE
+> Task :firebase_auth:preBuild UP-TO-DATE
+> Task :firebase_auth:preDebugBuild UP-TO-DATE
+> Task :firebase_analytics:writeDebugAarMetadata
+> Task :cloud_firestore:writeDebugAarMetadata
+> Task :firebase_core:preBuild UP-TO-DATE
+> Task :firebase_auth:writeDebugAarMetadata
+> Task :firebase_core:preDebugBuild UP-TO-DATE
+> Task :app:cleanMergeDebugAssets UP-TO-DATE
+> Task :firebase_core:writeDebugAarMetadata
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :cloud_firestore:mergeDebugShaders
+> Task :cloud_firestore:compileDebugShaders NO-SOURCE
+> Task :cloud_firestore:generateDebugAssets UP-TO-DATE
+> Task :cloud_firestore:mergeDebugAssets
+> Task :firebase_analytics:mergeDebugShaders
+> Task :firebase_analytics:compileDebugShaders NO-SOURCE
+> Task :firebase_analytics:generateDebugAssets UP-TO-DATE
+> Task :firebase_analytics:mergeDebugAssets
+> Task :firebase_auth:mergeDebugShaders
+> Task :firebase_auth:compileDebugShaders NO-SOURCE
+> Task :firebase_auth:generateDebugAssets UP-TO-DATE
+> Task :firebase_auth:mergeDebugAssets
+> Task :firebase_core:mergeDebugShaders
+> Task :firebase_core:compileDebugShaders NO-SOURCE
+> Task :firebase_core:generateDebugAssets UP-TO-DATE
+> Task :firebase_core:mergeDebugAssets
+> Task :app:checkDebugAarMetadata
+> Task :app:mergeDebugAssets
+> Task :app:copyFlutterAssetsDebug
+> Task :app:generateDebugResValues
+> Task :app:processDebugGoogleServices
+> Task :cloud_firestore:generateDebugResValues
+> Task :cloud_firestore:generateDebugResources
+> Task :cloud_firestore:packageDebugResources
+> Task :firebase_analytics:generateDebugResValues
+> Task :firebase_analytics:generateDebugResources
+> Task :firebase_analytics:packageDebugResources
+> Task :firebase_auth:generateDebugResValues
+> Task :firebase_auth:generateDebugResources
+> Task :firebase_auth:packageDebugResources
+> Task :firebase_core:generateDebugResValues
+> Task :firebase_core:generateDebugResources
+> Task :firebase_core:packageDebugResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:mergeDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :cloud_firestore:extractDeepLinksDebug
+> Task :firebase_analytics:extractDeepLinksDebug
+> Task :firebase_auth:extractDeepLinksDebug
+> Task :firebase_core:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+
+> Task :firebase_core:processDebugManifest
+package="io.flutter.plugins.firebase.core" found in source AndroidManifest.xml: C:\Users\hp\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.15.2\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.firebase.core" from the source AndroidManifest.xml: C:\Users\hp\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_core-3.15.2\android\src\main\AndroidManifest.xml.
+
+> Task :firebase_analytics:processDebugManifest
+package="io.flutter.plugins.firebase.analytics" found in source AndroidManifest.xml: C:\Users\hp\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_analytics-11.6.0\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.firebase.analytics" from the source AndroidManifest.xml: C:\Users\hp\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_analytics-11.6.0\android\src\main\AndroidManifest.xml.
+
+> Task :cloud_firestore:processDebugManifest
+package="io.flutter.plugins.firebase.firestore" found in source AndroidManifest.xml: C:\Users\hp\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-5.6.12\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.firebase.firestore" from the source AndroidManifest.xml: C:\Users\hp\AppData\Local\Pub\Cache\hosted\pub.dev\cloud_firestore-5.6.12\android\src\main\AndroidManifest.xml.
+
+> Task :firebase_auth:processDebugManifest
+package="io.flutter.plugins.firebase.auth" found in source AndroidManifest.xml: C:\Users\hp\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-5.7.0\android\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="io.flutter.plugins.firebase.auth" from the source AndroidManifest.xml: C:\Users\hp\AppData\Local\Pub\Cache\hosted\pub.dev\firebase_auth-5.7.0\android\src\main\AndroidManifest.xml.
+
+> Task :cloud_firestore:compileDebugLibraryResources
+> Task :app:processDebugMainManifest
+> Task :app:outputDebugAppLinkSettings
+> Task :app:processDebugManifest
+> Task :cloud_firestore:parseDebugLocalResources
+> Task :firebase_analytics:compileDebugLibraryResources
+> Task :firebase_auth:compileDebugLibraryResources
+> Task :firebase_analytics:parseDebugLocalResources
+> Task :firebase_auth:parseDebugLocalResources
+> Task :firebase_core:compileDebugLibraryResources
+> Task :firebase_analytics:generateDebugRFile
+> Task :cloud_firestore:generateDebugRFile
+> Task :firebase_auth:generateDebugRFile
+> Task :firebase_core:parseDebugLocalResources
+> Task :cloud_firestore:generateDebugBuildConfig
+> Task :app:processDebugManifestForPackage
+> Task :firebase_core:generateDebugRFile
+> Task :cloud_firestore:javaPreCompileDebug
+> Task :firebase_core:generateDebugBuildConfig
+> Task :firebase_analytics:checkKotlinGradlePluginConfigurationErrors
+> Task :firebase_core:javaPreCompileDebug
+> Task :firebase_analytics:generateDebugBuildConfig
+> Task :app:processDebugResources
+> Task :firebase_core:compileDebugJavaWithJavac
+> Task :firebase_analytics:javaPreCompileDebug
+> Task :firebase_auth:generateDebugBuildConfig
+> Task :firebase_auth:javaPreCompileDebug
+> Task :app:javaPreCompileDebug
+> Task :firebase_core:bundleLibCompileToJarDebug
+> Task :firebase_core:bundleLibRuntimeToJarDebug
+> Task :app:desugarDebugFileDependencies
+> Task :app:compressDebugAssets
+> Task :cloud_firestore:compileDebugJavaWithJavac
+> Task :cloud_firestore:bundleLibCompileToJarDebug
+
+> Task :firebase_auth:compileDebugJavaWithJavac
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :cloud_firestore:processDebugJavaRes NO-SOURCE
+> Task :firebase_auth:processDebugJavaRes NO-SOURCE
+> Task :firebase_core:processDebugJavaRes NO-SOURCE
+> Task :cloud_firestore:bundleLibRuntimeToJarDebug
+> Task :firebase_auth:bundleLibRuntimeToJarDebug
+> Task :firebase_auth:bundleLibCompileToJarDebug
+> Task :firebase_analytics:compileDebugKotlin
+> Task :app:checkDebugDuplicateClasses
+> Task :firebase_core:bundleLibRuntimeToDirDebug
+> Task :cloud_firestore:bundleLibRuntimeToDirDebug
+> Task :firebase_auth:bundleLibRuntimeToDirDebug
+> Task :app:configureCMakeDebug[arm64-v8a]
+> Task :app:mergeExtDexDebug
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\b2801b64bb2a9c7606ea19d11cefc8b7-87d5228d-f891-46ce-a042-b9909501e878\transformed\firebase-firestore-26.0.2-runtime\firebase-firestore-26.0.2-runtime_dex\classes.dex: D8: java.io.IOException: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\7272b6b9426e08d0135214a5b8ab3194-df8b1eab-7de4-4b03-903f-e51ca248c471\transformed\credentials-1.2.0-rc01-runtime\credentials-1.2.0-rc01-runtime_dex\classes.dex: D8: java.io.IOException: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\11945284df523f5acf332855977a1185-6586b08a-a453-4c14-ba6f-20abfe1f42eb\transformed\ads-adservices-1.1.0-beta11-runtime\ads-adservices-1.1.0-beta11-runtime_dex\classes.dex: D8: java.io.IOException: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\ab730ca17256e705de93e33a0ec854b8-df5d5f31-c354-4d56-b85a-e5212f3ee411\transformed\lifecycle-livedata-2.7.0-runtime\lifecycle-livedata-2.7.0-runtime_dex\classes.dex: D8: java.io.IOException: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\6c1a29b3976541342f8c9908f2fc4f51-28b8b3d6-de0b-4f4d-b4d6-dc3c2ac93f7f\transformed\activity-1.8.1-runtime\activity-1.8.1-runtime_dex\classes.dex: D8: java.io.IOException: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\b695c005d8e4a6c37456df9728e69771-95bf467a-8d27-4a1a-a7e5-3d05b2259f22\transformed\datastore-preferences-proto-1.1.7\datastore-preferences-proto-1.1.7_dex\classes.dex: D8: java.nio.file.FileSystemException: C:\Users\hp\.gradle\caches\8.14\transforms\b695c005d8e4a6c37456df9728e69771-95bf467a-8d27-4a1a-a7e5-3d05b2259f22\transformed\datastore-preferences-proto-1.1.7\datastore-preferences-proto-1.1.7_dex\classes.dex: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\3040b0493cb4391e275dd595592c78b1-9d50c55a-096a-4371-bf45-3afbfade7190\transformed\datastore-core-okio-jvm-1.1.7\datastore-core-okio-jvm-1.1.7_dex\classes.dex: D8: java.nio.file.FileSystemException: C:\Users\hp\.gradle\caches\8.14\transforms\3040b0493cb4391e275dd595592c78b1-9d50c55a-096a-4371-bf45-3afbfade7190\transformed\datastore-core-okio-jvm-1.1.7\datastore-core-okio-jvm-1.1.7_dex\classes.dex: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\03928a2fe045ae4fc7c391ecb5886d6a-603e280a-731f-4c98-81ef-aafbc262b3c8\transformed\datastore-core-release-runtime\datastore-core-release-runtime_dex\classes.dex: D8: java.nio.file.FileSystemException: C:\Users\hp\.gradle\caches\8.14\transforms\03928a2fe045ae4fc7c391ecb5886d6a-603e280a-731f-4c98-81ef-aafbc262b3c8\transformed\datastore-core-release-runtime\datastore-core-release-runtime_dex\classes.dex: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\a5aacd9854a80044fed24b36488f256c-39e4d707-e40a-4f39-9332-2f615d197bf2\transformed\recaptcha-18.6.1-runtime\recaptcha-18.6.1-runtime_dex\classes.dex: D8: java.nio.file.FileSystemException: C:\Users\hp\.gradle\caches\8.14\transforms\a5aacd9854a80044fed24b36488f256c-39e4d707-e40a-4f39-9332-2f615d197bf2\transformed\recaptcha-18.6.1-runtime\recaptcha-18.6.1-runtime_dex\classes.dex: There is not enough space on the disk
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\96fad53b2c1c30685a1e6c83239dcf0a-72f32700-37e0-497d-b929-981875dc180f\transformed\firebase-auth-24.0.1-runtime\firebase-auth-24.0.1-runtime_dex\classes.dex: D8: java.nio.file.FileSystemException: C:\Users\hp\.gradle\caches\8.14\transforms\96fad53b2c1c30685a1e6c83239dcf0a-72f32700-37e0-497d-b929-981875dc180f\transformed\firebase-auth-24.0.1-runtime\firebase-auth-24.0.1-runtime_dex\classes.dex: There is not enough space on the disk
+
+Daemon will be stopped at the end of the build after the daemon was no longer found in the daemon registry
+
+> Task :firebase_analytics:compileDebugKotlin FAILED
+e: file:///C:/Users/hp/.gradle/caches/8.14/transforms/13e2822a11d4d378c18463ab57e1dded/transformed/play-services-measurement-api-22.5.0-api.jar!/META-INF/java.com.google.android.gmscore.integ.client.measurement_api_measurement_api.kotlin_moduleModule was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.1.0, expected version is 1.9.0.
+e: file:///C:/Users/hp/.gradle/caches/8.14/transforms/61a2f88dcab64bc3cc81c8169a512ac9/transformed/play-services-measurement-impl-22.5.0-api.jar!/META-INF/java.com.google.android.gms.libs.filecompliance.proto_file_access_api_type_kt_proto_lite.kotlin_moduleModule was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.1.0, expected version is 1.9.0.
+e: file:///C:/Users/hp/.gradle/caches/8.14/transforms/61a2f88dcab64bc3cc81c8169a512ac9/transformed/play-services-measurement-impl-22.5.0-api.jar!/META-INF/third_party.kotlin.protobuf.src.commonMain.kotlin.com.google.protobuf.kotlin_only_for_use_in_proto_generated_code_its_generator_and_tests.kotlin_moduleModule was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.1.0, expected version is 1.9.0.
+e: file:///C:/Users/hp/.gradle/caches/8.14/transforms/61a2f88dcab64bc3cc81c8169a512ac9/transformed/play-services-measurement-impl-22.5.0-api.jar!/META-INF/third_party.kotlin.protobuf.src.commonMain.kotlin.com.google.protobuf.kotlin_shared_runtime.kotlin_moduleModule was compiled with an incompatible version of Kotlin. The binary version of its metadata is 2.1.0, expected version is 1.9.0.
+
+> Task :app:mergeExtDexDebug FAILED
+ERROR: C:\Users\hp\.gradle\caches\8.14\transforms\3435f1fdfdc2ee7be3cfc5ebaf5d27b2-4281cd4e-cdf5-4b83-ae40-9f7430ef1b40\transformed\datastore-preferences-external-protobuf-1.1.7\datastore-preferences-external-protobuf-1.1.7_dex\classes.dex: D8: java.nio.file.FileSystemException: C:\Users\hp\.gradle\caches\8.14\transforms\3435f1fdfdc2ee7be3cfc5ebaf5d27b2-4281cd4e-cdf5-4b83-ae40-9f7430ef1b40\transformed\datastore-preferences-external-protobuf-1.1.7\datastore-preferences-external-protobuf-1.1.7_dex\classes.dex: There is not enough space on the disk
+
+[Incubating] Problems report is available at: file:///C:/Users/hp/Desktop/meal_link/MealLink/build/reports/problems/problems-report.html
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':firebase_analytics:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':app:mergeExtDexDebug'.
+> Multiple build operations failed.
+      Could not write workspace metadata to C:\Users\hp\.gradle\caches\8.14\transforms\f33a4ce7a8848b6507a5c1d8d18395f1-92dca0ce-3f76-4d9c-bd51-bd3d5a559a9b\metadata.bin
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\e96cd0eeb8bc1be712d109df042b2470-dc6db445-ff60-42b5-922c-2f5d5719f11f' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\e96cd0eeb8bc1be712d109df042b2470-dc6db445-ff60-42b5-922c-2f5d5719f11f\transformed'
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\3a45ca37adb6e57aaff9e6f96c2c93e4-8c67b681-4011-41e2-9022-3ffc26a37955' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\3a45ca37adb6e57aaff9e6f96c2c93e4-8c67b681-4011-41e2-9022-3ffc26a37955\transformed'
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\da1d74b8b8911cf5a203df783b9ee2aa-f5a2fc40-c467-4cd3-b66b-877a075e331f' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\da1d74b8b8911cf5a203df783b9ee2aa-f5a2fc40-c467-4cd3-b66b-877a075e331f\transformed'
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d9584d8c5dd6b34a9f202fe0f4f4b1c9-7e098c8a-250a-4fde-9d10-86c021004c38' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d9584d8c5dd6b34a9f202fe0f4f4b1c9-7e098c8a-250a-4fde-9d10-86c021004c38\transformed'
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\3c5e2354c95aa5e8a4eefb44deacb878-cd406ad7-9c51-45bf-8374-82123ea6d9e8' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\3c5e2354c95aa5e8a4eefb44deacb878-cd406ad7-9c51-45bf-8374-82123ea6d9e8\transformed'
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\76c829148e885fcd7bf57e1c70a1ed23-1a8b01a9-0bc2-418a-bdf8-3b7a9d330a1d' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\76c829148e885fcd7bf57e1c70a1ed23-1a8b01a9-0bc2-418a-bdf8-3b7a9d330a1d\transformed'
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\ac755d49d62a00ff3ee38bfa87c4fd78-067ee8a2-6320-42c1-846f-47e4b0f82856' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\ac755d49d62a00ff3ee38bfa87c4fd78-067ee8a2-6320-42c1-846f-47e4b0f82856\transformed'
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\ac755d49d62a00ff3ee38bfa87c4fd78-8277ca53-8718-4526-9cbf-60008f6b8729' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\ac755d49d62a00ff3ee38bfa87c4fd78-8277ca53-8718-4526-9cbf-60008f6b8729\transformed'
+      Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d75bb56ded2351a5cc672b171398c878-41d356f0-11e7-496f-bd6e-017e33dc596c' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d75bb56ded2351a5cc672b171398c878-41d356f0-11e7-496f-bd6e-017e33dc596c\transformed'
+      ...and 133 more failures.
+   > Could not write workspace metadata to C:\Users\hp\.gradle\caches\8.14\transforms\f33a4ce7a8848b6507a5c1d8d18395f1-92dca0ce-3f76-4d9c-bd51-bd3d5a559a9b\metadata.bin
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\e96cd0eeb8bc1be712d109df042b2470-dc6db445-ff60-42b5-922c-2f5d5719f11f' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\e96cd0eeb8bc1be712d109df042b2470-dc6db445-ff60-42b5-922c-2f5d5719f11f\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\3a45ca37adb6e57aaff9e6f96c2c93e4-8c67b681-4011-41e2-9022-3ffc26a37955' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\3a45ca37adb6e57aaff9e6f96c2c93e4-8c67b681-4011-41e2-9022-3ffc26a37955\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\da1d74b8b8911cf5a203df783b9ee2aa-f5a2fc40-c467-4cd3-b66b-877a075e331f' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\da1d74b8b8911cf5a203df783b9ee2aa-f5a2fc40-c467-4cd3-b66b-877a075e331f\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d9584d8c5dd6b34a9f202fe0f4f4b1c9-7e098c8a-250a-4fde-9d10-86c021004c38' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d9584d8c5dd6b34a9f202fe0f4f4b1c9-7e098c8a-250a-4fde-9d10-86c021004c38\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\3c5e2354c95aa5e8a4eefb44deacb878-cd406ad7-9c51-45bf-8374-82123ea6d9e8' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\3c5e2354c95aa5e8a4eefb44deacb878-cd406ad7-9c51-45bf-8374-82123ea6d9e8\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\76c829148e885fcd7bf57e1c70a1ed23-1a8b01a9-0bc2-418a-bdf8-3b7a9d330a1d' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\76c829148e885fcd7bf57e1c70a1ed23-1a8b01a9-0bc2-418a-bdf8-3b7a9d330a1d\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\ac755d49d62a00ff3ee38bfa87c4fd78-067ee8a2-6320-42c1-846f-47e4b0f82856' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\ac755d49d62a00ff3ee38bfa87c4fd78-067ee8a2-6320-42c1-846f-47e4b0f82856\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\ac755d49d62a00ff3ee38bfa87c4fd78-8277ca53-8718-4526-9cbf-60008f6b8729' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\ac755d49d62a00ff3ee38bfa87c4fd78-8277ca53-8718-4526-9cbf-60008f6b8729\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d75bb56ded2351a5cc672b171398c878-41d356f0-11e7-496f-bd6e-017e33dc596c' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d75bb56ded2351a5cc672b171398c878-41d356f0-11e7-496f-bd6e-017e33dc596c\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d75bb56ded2351a5cc672b171398c878-a5735722-58bf-42be-9fd4-870f9ca01f47' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d75bb56ded2351a5cc672b171398c878-a5735722-58bf-42be-9fd4-870f9ca01f47\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\cc104908d898f6fc114802abc2b84d5e-9020a68f-adfa-4906-a1c0-45f407cbcb77' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\cc104908d898f6fc114802abc2b84d5e-9020a68f-adfa-4906-a1c0-45f407cbcb77\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\9ab3d62077e694bb64400e02b2c663ec-f2a351dd-88d3-43a0-b21d-9753866c159f' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\9ab3d62077e694bb64400e02b2c663ec-f2a351dd-88d3-43a0-b21d-9753866c159f\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\9ab3d62077e694bb64400e02b2c663ec-9adedba2-c804-4601-90d7-f25e1e9ac024' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\9ab3d62077e694bb64400e02b2c663ec-9adedba2-c804-4601-90d7-f25e1e9ac024\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\e15825c044657dbbec8b907c887f9adf-5eb04e07-fcb7-4535-af95-f6d4cf9f17ef' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\e15825c044657dbbec8b907c887f9adf-5eb04e07-fcb7-4535-af95-f6d4cf9f17ef\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-3890d7b9-eb92-4820-a62d-31578f87ef43' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-3890d7b9-eb92-4820-a62d-31578f87ef43\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-4643a839-d73c-4818-97eb-2fb24a647085' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-4643a839-d73c-4818-97eb-2fb24a647085\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-41e06307-6aa5-4c67-8553-8314cc565f49' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-41e06307-6aa5-4c67-8553-8314cc565f49\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-6f6ddb30-0789-4dd0-8ec3-4a101e322dcb' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-6f6ddb30-0789-4dd0-8ec3-4a101e322dcb\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-563e44bd-e9a4-40bf-a086-4bccd94affc9' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-563e44bd-e9a4-40bf-a086-4bccd94affc9\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-6c233ff2-98a4-4e82-afe3-0b13c5b64b38' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-6c233ff2-98a4-4e82-afe3-0b13c5b64b38\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-ddef477b-deb1-4b0e-95d0-f6e7ad4630a1' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-ddef477b-deb1-4b0e-95d0-f6e7ad4630a1\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-d11781fa-5e62-4d88-9c5e-2987416c9f60' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\c1e805b59ee397f045008370ce77271a-d11781fa-5e62-4d88-9c5e-2987416c9f60\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\78f77ea0e5dce0128c11aae29aadacf0-c800f2d1-d277-4629-a24c-790ae1785ae6' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\78f77ea0e5dce0128c11aae29aadacf0-c800f2d1-d277-4629-a24c-790ae1785ae6\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\78f77ea0e5dce0128c11aae29aadacf0-7a9aef1e-339f-4bca-beb6-36c7ce2823f4' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\78f77ea0e5dce0128c11aae29aadacf0-7a9aef1e-339f-4bca-beb6-36c7ce2823f4\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-6a3d1003-2826-45bb-86cd-2ff668192cc9' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-6a3d1003-2826-45bb-86cd-2ff668192cc9\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-874262fd-728a-40eb-8575-fc06f6611983' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-874262fd-728a-40eb-8575-fc06f6611983\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-680b8e83-5a35-4d3b-bea5-b0aa308472e4' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-680b8e83-5a35-4d3b-bea5-b0aa308472e4\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-c3bf7aa9-3791-4010-814b-1b107c9eba01' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-c3bf7aa9-3791-4010-814b-1b107c9eba01\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-11df5c27-45e0-4ddf-a697-c529be3d561d' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-11df5c27-45e0-4ddf-a697-c529be3d561d\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-5c181feb-1d91-4d57-91f9-164baded6c03' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-5c181feb-1d91-4d57-91f9-164baded6c03\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-8a42d18d-d06a-486d-ae40-3ad3710fac2b' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-8a42d18d-d06a-486d-ae40-3ad3710fac2b\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-3d9a58ca-ecfe-448f-b906-840a531813cc' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-3d9a58ca-ecfe-448f-b906-840a531813cc\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-69b01139-bdd0-4cee-a242-0f26fae88ee0' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-69b01139-bdd0-4cee-a242-0f26fae88ee0\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-c4b80d7f-f642-4835-922d-3b8dd641d967' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-c4b80d7f-f642-4835-922d-3b8dd641d967\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-150baf2f-2b75-4b71-8bf5-0f500143f98b' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-150baf2f-2b75-4b71-8bf5-0f500143f98b\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-71d01184-bccc-4654-bd9b-5abcbf646bcc' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-71d01184-bccc-4654-bd9b-5abcbf646bcc\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-cbe29670-a01b-42b3-addb-3652c01f0653' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-cbe29670-a01b-42b3-addb-3652c01f0653\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-11fb6c34-00b0-4e85-a311-10c0fc5dfd16' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-11fb6c34-00b0-4e85-a311-10c0fc5dfd16\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-6fa2a293-1fb8-4153-a2ca-da55c6b3b4d9' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-6fa2a293-1fb8-4153-a2ca-da55c6b3b4d9\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-ca126a1b-2eff-4ba4-ba60-df15fe67276a' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-ca126a1b-2eff-4ba4-ba60-df15fe67276a\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-446143b8-6c85-4440-92c7-9d43ef282424' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\85234a3f750b040d8ec40e43aaa11447-446143b8-6c85-4440-92c7-9d43ef282424\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\285f14c269f34c59577dc5fc906092b1-d326a2bf-9d26-467e-9874-bcd3300898c6' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\285f14c269f34c59577dc5fc906092b1-d326a2bf-9d26-467e-9874-bcd3300898c6\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d58027b42a3af7a381615878f5e3ceb8-f6c1d980-f0bb-499d-b2ad-abae8ceacd84' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d58027b42a3af7a381615878f5e3ceb8-f6c1d980-f0bb-499d-b2ad-abae8ceacd84\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d58027b42a3af7a381615878f5e3ceb8-299bfd22-5c77-4779-8ab3-a8fa9dbc18b5' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\d58027b42a3af7a381615878f5e3ceb8-299bfd22-5c77-4779-8ab3-a8fa9dbc18b5\transformed'
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+   > 
+
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\10ee94681c9298ad05fddd84eaf3bd86-e091a784-f2b8-4d94-aeec-846fa12780a3' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\10ee94681c9298ad05fddd84eaf3bd86-e091a784-f2b8-4d94-aeec-846fa12780a3\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\cee3c9720530b0feccea212521b64b06-c141f576-8e9b-4cfe-a13f-5c317d5b461f' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\cee3c9720530b0feccea212521b64b06-c141f576-8e9b-4cfe-a13f-5c317d5b461f\transformed'
+   > Failed to create parent directory 'C:\Users\hp\.gradle\caches\8.14\transforms\cee3c9720530b0feccea212521b64b06-a866902c-5e04-4ffd-814f-8069e56b0075' when creating directory 'C:\Users\hp\.gradle\caches\8.14\transforms\cee3c9720530b0feccea212521b64b06-a866902c-5e04-4ffd-814f-8069e56b0075\transformed'
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+==============================================================================
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 5m 12s
+99 actionable tasks: 94 executed, 5 up-to-date
