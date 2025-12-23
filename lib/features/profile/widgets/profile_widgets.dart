@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../core/theme/app_colors.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -20,11 +23,98 @@ class ProfileHeader extends StatelessWidget {
   }
 }
 
-class UserInfoCard extends StatelessWidget {
+class UserInfoCard extends StatefulWidget {
   const UserInfoCard({super.key});
 
   @override
+  State<UserInfoCard> createState() => _UserInfoCardState();
+}
+
+class _UserInfoCardState extends State<UserInfoCard> {
+  bool loading = true;
+  String name = '';
+  String email = '';
+  String phone = '';
+  String role = '';
+  String status = '';
+  int balance = 0;
+  int totalPaid = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUser();
+  }
+
+  Future<void> _loadUser() async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        setState(() {
+          loading = false;
+        });
+        return;
+      }
+
+      // first try document by uid
+      final uid = user.uid;
+      final ref = FirebaseFirestore.instance.collection('users');
+      DocumentSnapshot<Map<String, dynamic>>? doc;
+
+      final byId = await ref.doc(uid).get();
+      if (byId.exists) {
+        doc = byId;
+      } else if (user.email != null) {
+        // fallback query by email
+        final q = await ref.where('email', isEqualTo: user.email).limit(1).get();
+        if (q.docs.isNotEmpty) {
+          doc = q.docs.first;
+        }
+      }
+
+      if (doc != null && doc.exists) {
+        final data = doc.data() ?? {};
+        setState(() {
+          name = (data['name'] ?? user.displayName ?? '') as String;
+          email = (data['email'] ?? user.email ?? '') as String;
+          phone = (data['phone'] ?? '') as String;
+          role = (data['role'] ?? '') as String;
+          status = (data['status'] ?? '') as String;
+          balance = (data['balance'] is num) ? (data['balance'] as num).toInt() : int.tryParse('${data['balance']}') ?? 0;
+          totalPaid = (data['totalPaid'] is num) ? (data['totalPaid'] as num).toInt() : int.tryParse('${data['totalPaid']}') ?? 0;
+          loading = false;
+        });
+      } else {
+        // no user doc, use auth data
+        setState(() {
+          name = user.displayName ?? '';
+          email = user.email ?? '';
+          loading = false;
+        });
+      }
+    } catch (e) {
+      if (kDebugMode) print('[profile] load user error: $e');
+      setState(() {
+        loading = false;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (loading) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: const Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    final initials = (name.isNotEmpty) ? name.trim().split(' ').map((s) => s.isNotEmpty ? s[0] : '').take(2).join() : '?';
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -40,47 +130,91 @@ class UserInfoCard extends StatelessWidget {
               color: const Color(0xFFFBEFE7), // Light peach
               borderRadius: BorderRadius.circular(15),
             ),
-            child: const Icon(
-              Icons.person_outline,
-              size: 30,
-              color: Colors
-                  .white, // Actually in image it looks white icon, but on light bg?
-              // Image has white outline on light peach bg.
+            child: Center(
+              child: Text(
+                initials,
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              ),
             ),
           ),
           const SizedBox(width: 16),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Aymen Mohammed',
-                  style: TextStyle(
+                  name.isNotEmpty ? name : 'No name',
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: AppColors.primaryText,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 6),
                 Row(
                   children: [
-                    Icon(Icons.email_outlined, size: 14, color: Colors.grey),
-                    SizedBox(width: 4),
-                    Text(
-                      'aymen@example.com',
-                      style: TextStyle(color: Colors.grey, fontSize: 13),
+                    const Icon(Icons.email_outlined, size: 14, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Expanded(
+                      child: Text(
+                        email.isNotEmpty ? email : 'No email',
+                        style: const TextStyle(color: Colors.grey, fontSize: 13),
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(height: 2),
+                const SizedBox(height: 6),
                 Row(
                   children: [
-                    Icon(Icons.business, size: 14, color: Colors.grey),
-                    SizedBox(width: 4),
+                    const Icon(Icons.phone, size: 14, color: Colors.grey),
+                    const SizedBox(width: 6),
                     Text(
-                      'Nile Food',
-                      style: TextStyle(color: Colors.grey, fontSize: 13),
+                      phone.isNotEmpty ? phone : 'No phone',
+                      style: const TextStyle(color: Colors.grey, fontSize: 13),
                     ),
+                    const SizedBox(width: 10),
+                    Text(
+                      role.isNotEmpty ? role : '',
+                      style: const TextStyle(color: Colors.grey, fontSize: 12),
+                    ),
+                    const SizedBox(width: 8),
+                    if (status.isNotEmpty)
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: status == 'active' ? Colors.green.withOpacity(0.1) : Colors.orange.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          status,
+                          style: TextStyle(color: status == 'active' ? Colors.green : Colors.orange, fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                // contact info and role/status. Use Wrap to avoid overflow.
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 6,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.phone, size: 14, color: Colors.grey),
+                        const SizedBox(width: 6),
+                        Text(phone.isNotEmpty ? phone : 'No phone', style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                      ],
+                    ),
+                    if (role.isNotEmpty)
+                      Chip(label: Text(role, style: const TextStyle(fontSize: 12))),
+                    if (status.isNotEmpty)
+                      Chip(
+                        label: Text(status, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                        backgroundColor: status == 'active' ? Colors.green.withOpacity(0.1) : Colors.orange.withOpacity(0.1),
+                        labelStyle: TextStyle(color: status == 'active' ? Colors.green : Colors.orange),
+                      ),
                   ],
                 ),
               ],
@@ -161,7 +295,15 @@ class SignOutButton extends StatelessWidget {
           ),
           elevation: 0,
         ),
-        onPressed: () {},
+        onPressed: () async {
+          try {
+            await FirebaseAuth.instance.signOut();
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Signed out')));
+            // You may want to navigate to the login screen here.
+          } catch (e) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Sign out failed: $e')));
+          }
+        },
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
